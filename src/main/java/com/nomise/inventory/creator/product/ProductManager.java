@@ -1,4 +1,4 @@
-package com.nomise.inventory.creator.Product;
+package com.nomise.inventory.creator.product;
 
 import com.nomise.inventory.entities.Product;
 

@@ -1,10 +1,10 @@
-package com.nomise.inventory.creator.Product;
+package com.nomise.inventory.creator.product;
 
 import com.nomise.inventory.entities.Product;
 
 import java.util.List;
 
-public class DefaultProductManager implements ProductManager{
+public class DefaultProductManager implements ProductManager {
 
     @Override
     public void validateProduct(Product product){
