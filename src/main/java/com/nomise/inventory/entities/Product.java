@@ -1,14 +1,14 @@
 package com.nomise.inventory.entities;
 
+import com.nomise.inventory.commons.Base;
 import com.nomise.inventory.enums.FilterType;
 import com.nomise.inventory.enums.ProductCategory;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
+public class Product extends Base {
 
     private String name;
 
