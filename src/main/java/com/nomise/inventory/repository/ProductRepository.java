@@ -7,6 +7,7 @@ import org.jdbi.v3.core.Jdbi;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 public class ProductRepository {
@@ -34,6 +35,10 @@ public class ProductRepository {
 
     public List<Product> getProductByCategory(String category){
         return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByCategory(category));
+    }
+
+    public Optional<Product> getProductByExternalId(String externalId){
+        return jdbi.withExtension(ProductDao.class, dao -> dao.getByExternalId(externalId));
     }
 
 }

@@ -1,12 +1,14 @@
 package com.nomise.inventory.commons;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Strings;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,6 +17,8 @@ import java.sql.Timestamp;
 public class Base {
     @JsonIgnore
     private Long id;
+
+    private String externalId;
 
     private Timestamp createdAt;
 
@@ -32,11 +36,17 @@ public class Base {
         this.updatedAt = timestamp;
         this.createdBy = ADMIN;
         this.updatedBy = ADMIN;
+        if (Strings.isNullOrEmpty(this.externalId)) {
+            this.externalId = UUID.randomUUID().toString();
+        }
     }
 
     public void preUpdate() {
         this.updatedAt = new Timestamp(System.currentTimeMillis());
         this.updatedBy = ADMIN;
+        if (Strings.isNullOrEmpty(this.externalId)) {
+            this.externalId = UUID.randomUUID().toString();
+        }
     }
 }
 

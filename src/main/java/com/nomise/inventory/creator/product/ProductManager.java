@@ -6,12 +6,14 @@ import java.util.List;
 
 public interface ProductManager {
 
-    void validateProduct(Product productRequest);
+    void validateProduct(Product product);
 
     void createOrUpdate(Product product);
 
     List<Product> getProductsToShowOnHomepage(ProductShowStrategy productShowStrategy);
 
     String getLockKey(Product p);
+
+    Product getDuplicateProduct(Product product);
 
 }

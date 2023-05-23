@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -21,16 +22,20 @@ public class ProductService {
 
     private ProductRepository productRepository;
 
-    List<Product> getProducts(){
+    public List<Product> getProducts(){
         return productRepository.getProducts();
     }
 
-    List<Product> getProductsByOfferId(String offerId){
+    public List<Product> getProductsByOfferId(String offerId){
         return productRepository.getProductsByOfferId(offerId);
     }
 
-    List<Product> getProductsByCategory(String category){
+    public List<Product> getProductsByCategory(String category){
         return productRepository.getProductByCategory(category);
+    }
+
+    public Optional<Product> getProductByExternalId(String externalId){
+        return productRepository.getProductByExternalId(externalId);
     }
 
 }

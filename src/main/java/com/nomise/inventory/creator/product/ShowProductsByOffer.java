@@ -1,5 +1,6 @@
 package com.nomise.inventory.creator.product;
 
+import com.nomise.inventory.creator.filter.FilterType;
 import com.nomise.inventory.creator.product.ProductShowStrategy;
 import com.nomise.inventory.entities.Product;
 import com.nomise.inventory.service.ProductService;
@@ -18,6 +19,11 @@ public class ShowProductsByOffer implements ProductShowStrategy {
 
     @Override
     public List<Product> getProductsToShow(String offerId){
-        return productService
+        return productService.getProductsByOfferId(offerId);
+    }
+
+    @Override
+    public FilterType getFilterType() {
+        return FilterType.OFFER;
     }
 }
