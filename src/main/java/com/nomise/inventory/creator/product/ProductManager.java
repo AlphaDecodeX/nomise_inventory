@@ -10,7 +10,7 @@ public interface ProductManager {
 
     void createOrUpdate(Product product);
 
-    List<Product> getProductsToShow(ProductShowStrategy productShowStrategy);
+    List<Product> getProductsToShowOnHomepage(ProductShowStrategy productShowStrategy);
 
     String getLockKey(Product p);
 
