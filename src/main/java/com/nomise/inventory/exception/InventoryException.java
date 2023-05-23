@@ -4,7 +4,8 @@ public enum InventoryException {
 
     INTERNAL_SERVER_ERROR(new RuntimeException("Internal Server Error")),
     BAD_REQUEST(new RuntimeException("Bad Request")),
-    NOT_FOUND(new RuntimeException("Not Found")),;
+    NOT_FOUND(new RuntimeException("Not Found")),
+    VALIDATION_ERROR(new RuntimeException("Validation Error"));
 
     private final RuntimeException exception;
 
@@ -12,7 +13,7 @@ public enum InventoryException {
         this.exception = ex;
     }
 
-    public Exception getException(){
+    public RuntimeException getException(){
         return this.exception;
     }
 }

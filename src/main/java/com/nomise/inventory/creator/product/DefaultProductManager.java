@@ -1,6 +1,7 @@
 package com.nomise.inventory.creator.product;
 
 import com.nomise.inventory.entities.Product;
+import com.nomise.inventory.exception.InventoryException;
 import com.nomise.inventory.service.ProductService;
 
 import java.util.List;
@@ -13,8 +14,7 @@ public class DefaultProductManager implements ProductManager {
     @Override
     public void validateProduct(Product product){
         Optional<Product> duplicateProduct = productService.getProductByExternalId(product.getExternalId());
-        duplicateProduct
-
+        duplicateProduct.orElseThrow(throw InventoryException.VALIDATION_ERROR);
     }
 
     @Override
