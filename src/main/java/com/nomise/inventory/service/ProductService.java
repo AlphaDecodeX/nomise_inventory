@@ -38,4 +38,8 @@ public class ProductService {
         return productRepository.getProductByExternalId(externalId);
     }
 
+    public Optional<Product> updateProduct(Product product){
+        return productRepository.update(product);
+    }
+
 }

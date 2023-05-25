@@ -19,10 +19,10 @@ public class ProductRepository {
         return product;
     }
 
-    public Product update(Product product) {
+    public Optional<Product> update(Product product) {
         product.preUpdate();
         jdbi.useExtension(ProductDao.class, dao -> dao.update(product));
-        return product;
+        return Optional.of(product);
     }
 
     public List<Product> getProducts() {

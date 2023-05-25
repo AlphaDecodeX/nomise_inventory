@@ -10,10 +10,6 @@ public interface ProductManager {
 
     void createOrUpdate(Product product);
 
-    List<Product> getProductsToShowOnHomepage(ProductShowStrategy productShowStrategy);
-
-    String getLockKey(Product p);
-
-    Product getDuplicateProduct(Product product);
+    List<Product> getProductsToShowOnHomepage(ProductShowStrategy productShowStrategy, String filter);
 
 }

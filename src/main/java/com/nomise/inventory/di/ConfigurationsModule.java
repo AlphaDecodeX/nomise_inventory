@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nomise.inventory.configuration.DatabaseConfiguration;
 import com.nomise.inventory.configuration.InventoryConfiguration;
 import com.zaxxer.hikari.HikariDataSource;
+import io.micrometer.common.util.StringUtils;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.jackson2.Jackson2Config;
 import org.jdbi.v3.jackson2.Jackson2Plugin;
@@ -40,9 +41,8 @@ public class ConfigurationsModule {
         dataSource.setMaxLifetime(databaseConfig.getMaxLifeTime());
         dataSource.setAutoCommit(databaseConfig.isAutoCommit());
         dataSource.setReadOnly(databaseConfig.isReadOnly());
-        dataSource.setConnectionInitSql(databaseConfig.getTestStatement());
         dataSource.setConnectionTimeout(databaseConfig.getConnectionTimeout());
-        if (!databaseConfig.getPoolName().isBlank()) {
+        if (StringUtils.isNotBlank(databaseConfig.getPoolName())) {
             dataSource.setPoolName(databaseConfig.getPoolName());
         }
         return dataSource;

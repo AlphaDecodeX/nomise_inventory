@@ -3,6 +3,7 @@ package com.nomise.inventory.configuration;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 public class DatabaseConfiguration {
-    private String driverClass;
+    private String driverClass = "com.mysql.cj.jdbc.Driver";
 
     private String user;
 
@@ -32,8 +33,6 @@ public class DatabaseConfiguration {
     private int maxStatements;
 
     private int idleConnectionTestPeriod;
-
-    private String testStatement;
 
     private String poolName;
 
