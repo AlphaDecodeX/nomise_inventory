@@ -1,9 +1,9 @@
 inventory:
   databaseConfiguration:
     user: ${DB_USER:-root}
-    password: ${DB_PASSWORD:-PasswordDS}
+    password: ${DB_PASSWORD:-lpsk5713}
     driverClass: "com.mysql.cj.jdbc.Driver"
-    url: "jdbc:mysql://${DB_HOST:nomise.ckw6qdo8w9lb.ap-south-1.rds.amazonaws.com}:${DB_PORT:3306}/${DB_NAME:nomise}?useUnicode=yes&characterEncoding=UTF-8&autoReconnect=true&enabledTLSProtocols=TLSv1.2"
+    url: "jdbc:mysql://localhost:3306/inventory?allowPublicKeyRetrieval=true&useSSL=false"
     acquireIncrement: 5
     initialPoolSize: 50
     minPoolSize: 10
@@ -11,4 +11,4 @@ inventory:
     maxIdleTime: 840000
     maxStatements: 500
     idleConnectionTestPeriod: 1800000
-    connectionTimeout: 500
+    connectionTimeout: 5000

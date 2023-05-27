@@ -3,6 +3,7 @@ package com.nomise.inventory.di;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nomise.inventory.configuration.DatabaseConfiguration;
 import com.nomise.inventory.configuration.InventoryConfiguration;
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import io.micrometer.common.util.StringUtils;
 import org.jdbi.v3.core.Jdbi;
@@ -31,21 +32,21 @@ public class ConfigurationsModule {
     }
 
     private HikariDataSource createDataSource(DatabaseConfiguration databaseConfig) {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(databaseConfig.getUrl());
-        dataSource.setUsername(databaseConfig.getUser());
-        dataSource.setPassword(databaseConfig.getPassword());
-        dataSource.setMinimumIdle(databaseConfig.getMinPoolSize());
-        dataSource.setMaximumPoolSize(databaseConfig.getMaxPoolSize());
-        dataSource.setIdleTimeout(databaseConfig.getMaxIdleTime());
-        dataSource.setMaxLifetime(databaseConfig.getMaxLifeTime());
-        dataSource.setAutoCommit(databaseConfig.isAutoCommit());
-        dataSource.setReadOnly(databaseConfig.isReadOnly());
-        dataSource.setConnectionTimeout(databaseConfig.getConnectionTimeout());
+        HikariConfig configuration = new HikariConfig();
+        configuration.setJdbcUrl(databaseConfig.getUrl());
+        configuration.setUsername(databaseConfig.getUser());
+        configuration.setPassword(databaseConfig.getPassword());
+        configuration.setMinimumIdle(databaseConfig.getMinPoolSize());
+        configuration.setMaximumPoolSize(databaseConfig.getMaxPoolSize());
+        configuration.setIdleTimeout(databaseConfig.getMaxIdleTime());
+        configuration.setMaxLifetime(databaseConfig.getMaxLifeTime());
+        configuration.setAutoCommit(databaseConfig.isAutoCommit());
+        configuration.setReadOnly(databaseConfig.isReadOnly());
+        configuration.setConnectionTimeout(databaseConfig.getConnectionTimeout());
         if (StringUtils.isNotBlank(databaseConfig.getPoolName())) {
-            dataSource.setPoolName(databaseConfig.getPoolName());
+            configuration.setPoolName(databaseConfig.getPoolName());
         }
-        return dataSource;
+        return new HikariDataSource(configuration);
     }
 
 

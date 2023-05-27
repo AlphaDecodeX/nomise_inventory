@@ -1,13 +1,18 @@
 package com.nomise.inventory.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nomise.inventory.commons.Base;
 import com.nomise.inventory.enums.FilterType;
 import com.nomise.inventory.enums.ProductCategory;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product extends Base {
 
     private String name;

@@ -1,7 +1,6 @@
 package com.nomise.inventory.dao;
 
 import com.nomise.inventory.entities.Product;
-import com.nomise.inventory.enums.ProductCategory;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -28,12 +27,15 @@ public interface ProductDao {
     void update(@BindBean("a") Product product);
 
     @SqlQuery("SELECT id, created_at, created_by, updated_by, external_id, name, description, price, rating, offer_id, no_of_ratings, img, stock, user_id, product_category, filter_type FROM products")
+    @RegisterBeanMapper(Product.class)
     List<Product> getProducts();
 
     @SqlQuery("SELECT id, created_at, created_by, updated_by, external_id, name, description, price, rating, offer_id, no_of_ratings, img, stock, user_id, product_category, filter_type FROM products WHERE product_category = :pc")
+    @RegisterBeanMapper(Product.class)
     List<Product> getProductByCategory(@Bind("pc") String pc);
 
     @SqlQuery("SELECT id, created_at, created_by, updated_by, external_id, name, description, price, rating, offer_id, no_of_ratings, img, stock, user_id, product_category, filter_type FROM products WHERE offer_id = :offerId")
+    @RegisterBeanMapper(Product.class)
     List<Product> getProductByOfferId(@Bind("offerId") String offerId);
 
 }
