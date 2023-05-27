@@ -15,7 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Base {
-    @JsonIgnore
     private Long id;
 
     private String externalId;

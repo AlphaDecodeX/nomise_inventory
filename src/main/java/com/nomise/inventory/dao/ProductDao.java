@@ -19,7 +19,7 @@ public interface ProductDao {
     @RegisterBeanMapper(Product.class)
     Optional<Product> getByExternalId(@Bind("external_id") final String externalId);
 
-    @SqlQuery("SELECT id, created_at, created_by, updated_by, name, description, price, rating, offer_id, no_of_ratings, img, stock, user_id, product_category, filter_type FROM products WHERE filter_type = :filter_type")
+    @SqlQuery("SELECT id,external_id, created_at, created_by, updated_by, name, description, price, rating, offer_id, no_of_ratings, img, stock, user_id, product_category, filter_type FROM products WHERE filter_type = :filter_type")
     @RegisterBeanMapper(Product.class)
     List<Product> getProductByFilterType(@Bind("filter_type") final String filter_type);
 
