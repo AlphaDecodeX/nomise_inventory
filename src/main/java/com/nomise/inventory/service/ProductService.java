@@ -22,9 +22,12 @@ public class ProductService {
 
     private ProductRepository productRepository;
 
+    private ProductManager productManager;
+
     @Autowired
-    public ProductService(ProductRepository productRepository){
+    public ProductService(ProductRepository productRepository, ProductManager productManager){
         this.productRepository = productRepository;
+        this.productManager = productManager;
     }
 
     public List<Product> getProducts(){
@@ -49,6 +52,10 @@ public class ProductService {
 
     public Optional<Product> updateProduct(Product product){
         return productRepository.update(product);
+    }
+
+    public Optional<Product> insertProduct(Product product){
+        return productManager.createOrUpdate(product);
     }
 
 }

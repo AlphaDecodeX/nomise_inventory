@@ -2,6 +2,7 @@ package com.nomise.inventory.resource;
 
 import com.nomise.inventory.entities.Product;
 import com.nomise.inventory.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,11 @@ public class ProductResource {
     @PutMapping
     public Optional<Product> updateProduct(@RequestBody Product product) {
         return productService.updateProduct(product);
+    }
+
+    @PostMapping
+    public Optional<Product> createProduct(@RequestBody @Valid Product product){
+        return productService.insertProduct(product);
     }
 
 }

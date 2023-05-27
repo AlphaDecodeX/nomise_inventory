@@ -3,13 +3,21 @@ package com.nomise.inventory.creator.product;
 import com.nomise.inventory.entities.Product;
 import com.nomise.inventory.exception.InventoryException;
 import com.nomise.inventory.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class DefaultProductManager implements ProductManager {
 
     private ProductRepository productRepository;
+
+    @Autowired
+    public DefaultProductManager(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
 
     @Override
     public void validateProduct(Product product) throws RuntimeException{
@@ -18,15 +26,17 @@ public class DefaultProductManager implements ProductManager {
     }
 
     @Override
-    public void createOrUpdate(Product product){
+    public Optional<Product> createOrUpdate(Product product){
         try{
             validateProduct(product);
-            productRepository.insert(product);
+            return productRepository.update(product);
         }catch(Exception ex){
             if(ex.equals(InventoryException.VALIDATION_ERROR.getException())){
-                productRepository.update(product);
+                return productRepository.insert(product);
+
             }
         }
+        return Optional.empty();
     }
 
     @Override

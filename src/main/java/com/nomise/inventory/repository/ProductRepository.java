@@ -14,10 +14,11 @@ import java.util.Optional;
 public class ProductRepository {
     private final Jdbi jdbi;
 
-    public Product insert(Product product){
+    public Optional<Product> insert(Product product){
+        product.prePersist();
         long id = jdbi.withExtension(ProductDao.class, dao -> dao.insert(product));
         product.setId(id);
-        return product;
+        return Optional.of(product);
     }
 
     public Optional<Product> update(Product product) {
