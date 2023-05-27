@@ -39,6 +39,11 @@ public class ProductResource {
         return productService.getProductByExternalId(externalId);
     }
 
+    @GetMapping("/filter/{filterType}")
+    public List<Product> getProductByFilterType(@PathVariable String filterType) {
+        return productService.getProductByFilterType(filterType);
+    }
+
     @PutMapping
     public Optional<Product> updateProduct(@RequestBody Product product) {
         return productService.updateProduct(product);

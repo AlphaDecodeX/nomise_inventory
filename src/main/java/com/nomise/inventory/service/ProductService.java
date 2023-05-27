@@ -3,6 +3,7 @@ package com.nomise.inventory.service;
 import com.nomise.inventory.creator.product.ProductManager;
 import com.nomise.inventory.dao.ProductDao;
 import com.nomise.inventory.entities.Product;
+import com.nomise.inventory.enums.FilterType;
 import com.nomise.inventory.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +41,10 @@ public class ProductService {
 
     public Optional<Product> getProductByExternalId(String externalId){
         return productRepository.getProductByExternalId(externalId);
+    }
+
+    public List<Product> getProductByFilterType(String filterType){
+        return productRepository.getProductByFilterType(filterType);
     }
 
     public Optional<Product> updateProduct(Product product){

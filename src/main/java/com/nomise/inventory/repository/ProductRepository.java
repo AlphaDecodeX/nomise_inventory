@@ -42,4 +42,8 @@ public class ProductRepository {
         return jdbi.withExtension(ProductDao.class, dao -> dao.getByExternalId(externalId));
     }
 
+    public List<Product> getProductByFilterType(String filterType){
+        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByFilterType(filterType));
+    }
+
 }
