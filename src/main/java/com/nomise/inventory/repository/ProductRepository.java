@@ -4,12 +4,14 @@ import com.nomise.inventory.dao.ProductDao;
 import com.nomise.inventory.entities.Product;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
+@Component
 public class ProductRepository {
     private final Jdbi jdbi;
 

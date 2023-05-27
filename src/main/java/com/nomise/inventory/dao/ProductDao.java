@@ -8,11 +8,12 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Component
 public interface ProductDao {
 
     @SqlQuery("SELECT id, created_at, created_by, updated_by, name, description, price, rating, offer_id, no_of_ratings, img, stock, user_id, product_category, filter_type FROM products WHERE external_id = :external_id")

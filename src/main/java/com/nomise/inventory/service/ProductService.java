@@ -6,6 +6,8 @@ import com.nomise.inventory.entities.Product;
 import com.nomise.inventory.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +16,15 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Component
 public class ProductService {
 
-    private ProductDao productDao;
-
-    private ProductManager productManager;
-
     private ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
 
     public List<Product> getProducts(){
         return productRepository.getProducts();

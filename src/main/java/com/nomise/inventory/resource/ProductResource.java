@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/products/v1")
+@RequestMapping("/inventory/v1")
 public class ProductResource {
 
     private final ProductService productService;
@@ -19,7 +19,7 @@ public class ProductResource {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping("/products")
     public List<Product> getProducts() {
         return productService.getProducts();
     }
